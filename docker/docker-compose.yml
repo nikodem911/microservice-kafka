@@ -45,4 +45,13 @@ services:
      - postgres
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+     - "9000:9000"
+    environment:
+      JVM_OPTS: "-Xms32M -Xmx64M"
+      SERVER_SERVLET_CONTEXTPATH: /
+      KAFKA_BROKERCONNECT: kafka:9092
+    links:
+     - kafka
